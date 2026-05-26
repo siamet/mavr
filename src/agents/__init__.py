@@ -10,10 +10,12 @@ from src.agents.base_agent import (
     AgentResult,
     BaseAgent,
 )
+from src.agents.performance_agent import PerformanceAgent
 
 __all__ = [
     "AgentCapabilities",
     "AgentContext",
     "AgentResult",
     "BaseAgent",
+    "PerformanceAgent",
 ]

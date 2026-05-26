@@ -36,6 +36,7 @@ class PipelineResult:
         feature_vectors: Per-entity 128-dim feature vectors.
         cfgs: Per-function control flow graphs.
         taint_flows: Detected taint flows (potential vulnerabilities).
+        file_asts: Per-file root AST nodes, keyed by file path.
         processing_time_seconds: Total pipeline execution time.
         files_processed: Number of files processed.
         entities_found: Total number of entities extracted.
@@ -47,6 +48,7 @@ class PipelineResult:
     feature_vectors: Dict[str, FeatureVector] = field(default_factory=dict)
     cfgs: Dict[str, ControlFlowGraph] = field(default_factory=dict)
     taint_flows: List[TaintFlow] = field(default_factory=list)
+    file_asts: Dict[str, ASTNode] = field(default_factory=dict)
     processing_time_seconds: float = 0.0
     files_processed: int = 0
     entities_found: int = 0
@@ -102,6 +104,7 @@ class AnalysisPipeline:
         self._graph_builder.resolve_cross_file_references()
         result.graph = self._graph_builder.build()
         result.entities_found = result.graph.entity_count
+        result.file_asts = dict(self._ast_map)
 
         # Step 3: Compute metrics
         metrics_result = self._metrics_calc.compute_all(result.graph, self._ast_map)
@@ -156,13 +159,18 @@ class AnalysisPipeline:
         self._graph_builder.resolve_cross_file_references()
 
         # Recompute metrics
-        metrics_result = self._metrics_calc.compute_all(previous_result.graph, self._ast_map)
+        metrics_result = self._metrics_calc.compute_all(
+            previous_result.graph, self._ast_map
+        )
         previous_result.entity_metrics = metrics_result.entity_metrics
         previous_result.structural_metrics = metrics_result.structural_metrics
 
         # Recompute feature vectors
-        previous_result.feature_vectors = self._feature_extractor.extract_all(metrics_result)
+        previous_result.feature_vectors = self._feature_extractor.extract_all(
+            metrics_result
+        )
         previous_result.entities_found = previous_result.graph.entity_count
+        previous_result.file_asts = dict(self._ast_map)
         previous_result.processing_time_seconds = time.time() - start
 
         return previous_result
