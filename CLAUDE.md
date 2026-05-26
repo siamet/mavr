@@ -163,7 +163,7 @@ Raises:
 
 ### Current Architecture
 
-**Multi-Agent AI System for Code Review & Refactoring**
+**Mavr**
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    User Interface Layer                      │

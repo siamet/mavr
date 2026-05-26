@@ -3,9 +3,9 @@ requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "multi-agent-code-review"
+name = "mavr"
 version = "0.1.0"
-description = "Multi-Agent AI System for Automated Code Review & Refactoring"
+description = "Mavr: multi-agent AI system for automated code review and refactoring"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}

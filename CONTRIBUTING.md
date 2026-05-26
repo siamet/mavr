@@ -1,10 +1,10 @@
-# Contributing to Multi-Agent Code Review
+# Contributing to Mavr
 
 Thank you for your interest in contributing to this research project! This guide will help you get started.
 
 ## 🎯 Project Overview
 
-This is an academic research project developing a multi-agent AI system for automated code review and refactoring. The system uses:
+This is a research project developing a multi-agent AI system for automated code review and refactoring. The system uses:
 - **Graph Neural Networks (GNN)** for architecture analysis
 - **Fine-tuned LLM (CodeLlama-7B)** for maintainability assessment
 - **Static analysis** for performance and security
@@ -23,8 +23,8 @@ This is an academic research project developing a multi-agent AI system for auto
 
 ```bash
 # Clone the repository
-git clone https://github.com/siamet/multi-agent-code-review.git
-cd multi-agent-code-review
+git clone https://github.com/siamet/mavr.git
+cd mavr
 
 # Create virtual environment
 python -m venv venv
@@ -45,7 +45,7 @@ pytest tests/
 
 ### 1. Find or Create an Issue
 
-- Check existing [issues](https://github.com/[username]/multi-agent-code-review/issues)
+- Check existing [issues](https://github.com/siamet/mavr/issues)
 - Comment on an issue to claim it
 - For new features, create an issue first to discuss the approach
 

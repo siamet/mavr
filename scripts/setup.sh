@@ -1,9 +1,9 @@
 #!/bin/bash
-# Development environment setup script for Multi-Agent Code Review System
+# Development environment setup script for Mavr
 
 set -e  # Exit on error
 
-echo "Setting up Multi-Agent Code Review System..."
+echo "Setting up Mavr..."
 
 # Check Python version
 PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')

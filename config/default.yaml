@@ -1,8 +1,8 @@
-# Default configuration for Multi-Agent Code Review System
+# Default configuration for Mavr
 
 # Application settings
 application:
-  name: "Multi-Agent Code Review"
+  name: "Mavr"
   version: "0.1.0"
   environment: "development"
 

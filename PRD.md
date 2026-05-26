@@ -1,5 +1,5 @@
 # Product Requirements Document (PRD)
-## Multi-Agent AI System for Automated Code Review & Refactoring
+## Mavr
 
 **Version:** 1.0  
 **Date:** October 2025   
@@ -1171,7 +1171,7 @@ A feature is considered "done" when:
 
 **Project Lead:** siamet
 **Email:** siamet@protonmail.com  
-**GitHub:** https://github.com/siamet/multi-agent-code-review  
+**GitHub:** https://github.com/siamet/mavr  
 **Office Hours:** [Schedule link for questions]
 
 **Collaboration Opportunities:**

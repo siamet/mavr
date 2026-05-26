@@ -1,4 +1,4 @@
-# 🤖 Multi-Agent AI System for Automated Code Review & Refactoring
+# 🤖 Mavr
 
 <!-- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) -->
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -173,8 +173,8 @@ A coordinated multi-agent system where:
 
 ```bash
 # Clone the repository
-git clone https://github.com/siamet/multi-agent-code-review.git
-cd multi-agent-code-review
+git clone https://github.com/siamet/mavr.git
+cd mavr
 
 # Create virtual environment
 python -m venv venv
@@ -194,10 +194,10 @@ python scripts/download_models.py
 
 ```bash
 # Build Docker image
-docker build -t code-review-system .
+docker build -t mavr .
 
 # Run container
-docker run -p 8000:8000 -v $(pwd):/workspace code-review-system
+docker run -p 8000:8000 -v $(pwd):/workspace mavr
 
 # Or use docker-compose
 docker-compose up
@@ -207,8 +207,8 @@ docker-compose up
 
 ```bash
 # Clone repository
-git clone https://github.com/siamet/multi-agent-code-review.git
-cd multi-agent-code-review
+git clone https://github.com/siamet/mavr.git
+cd mavr
 
 # Install in development mode
 pip install -e .
@@ -414,7 +414,7 @@ See [EVALUATION.md](docs/EVALUATION.md) for comprehensive benchmark results, abl
 ### Project Structure
 
 ```
-multi-agent-code-review/
+mavr/
 ├── src/                      # Source code
 │   ├── parsing/             # Multi-language parsers
 │   ├── graph/               # Knowledge graph construction
@@ -545,8 +545,8 @@ This project makes several novel contributions to software engineering and AI re
 If you use this work in your research, please cite:
 
 ```bibtex
-@article{yourname2025multiagent,
-  title={Multi-Agent AI System for Automated Code Review and Refactoring},
+@article{yourname2025mavr,
+  title={Mavr: A Multi-Agent AI System for Automated Code Review and Refactoring},
   author={siamet},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
@@ -567,7 +567,7 @@ If you use this work in your research, please cite:
 
 ## 📧 Contact
 
-**Project Link:** [https://github.com/siamet/multi-agent-code-review](https://github.com/yourusername/multi-agent-code-review)
+**Project Link:** [https://github.com/siamet/mavr](https://github.com/siamet/mavr)
 
 ---
 
@@ -579,7 +579,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=siamet/multi-agent-code-review&type=Date)](https://star-history.com/#yourusername/multi-agent-code-review&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=siamet/mavr&type=Date)](https://star-history.com/#siamet/mavr&Date)
 
 --- -->
 
@@ -588,6 +588,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you find this project useful, please consider giving it a ⭐!
 
-[Report Bug](https://github.com/siamet/multi-agent-code-review/issues) · [Request Feature](https://github.com/siamet/multi-agent-code-review/issues) · [Documentation](https://docs-link.com)
+[Report Bug](https://github.com/siamet/mavr/issues) · [Request Feature](https://github.com/siamet/mavr/issues) · [Documentation](https://docs-link.com)
 
 </div>

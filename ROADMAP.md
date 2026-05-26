@@ -1,5 +1,5 @@
 # 🗺️ Development Roadmap
-## Multi-Agent AI System for Automated Code Review & Refactoring
+## Mavr
 
 **Project Status:** Phase 1 Complete ✅ - Starting Phase 2
 **Target:** Research-level implementation for academic publication

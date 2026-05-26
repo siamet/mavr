@@ -1,8 +1,8 @@
-"""Multi-Agent AI System for Automated Code Review & Refactoring.
+"""Mavr.
 
-This package provides a research-level multi-agent system that autonomously
-analyzes codebases, detects quality issues, and proposes semantically-preserving
-refactorings using Graph Neural Networks, Large Language Models, and Reinforcement Learning.
+A research-level multi-agent system that autonomously analyzes codebases,
+detects quality issues, and proposes semantically-preserving refactorings
+using Graph Neural Networks, Large Language Models, and Reinforcement Learning.
 """
 
 __version__ = "0.1.0"

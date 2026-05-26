@@ -1,4 +1,4 @@
-"""Main entry point for the multi-agent code review system."""
+"""Main entry point for Mavr."""
 
 import argparse
 import os
@@ -76,7 +76,8 @@ def main() -> int:
         Exit code (0 for success, non-zero for error)
     """
     parser = argparse.ArgumentParser(
-        description="Multi-Agent AI System for Automated Code Review & Refactoring"
+        prog="mavr",
+        description="Mavr: multi-agent AI system for automated code review and refactoring",
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Command to execute")
@@ -100,7 +101,7 @@ def main() -> int:
         return 0
 
     elif args.command == "version":
-        print("Multi-Agent Code Review System v0.2.0")
+        print("Mavr v0.2.0")
         print("Phase 1: Core Analysis Pipeline")
         return 0
 

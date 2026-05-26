@@ -1,4 +1,4 @@
-"""Setup configuration for multi-agent-code-review package."""
+"""Setup configuration for the mavr package."""
 
 from setuptools import setup, find_packages
 from pathlib import Path
@@ -21,14 +21,14 @@ if dev_requirements_file.exists():
     dev_requirements = [r.strip() for r in dev_requirements if r.strip() and not r.startswith("#") and not r.startswith("-r")]
 
 setup(
-    name="multi-agent-code-review",
+    name="mavr",
     version="0.1.0",
     author="siamet",
     author_email="siamet@protonmail.com",
-    description="Multi-Agent AI System for Automated Code Review & Refactoring",
+    description="Mavr: multi-agent AI system for automated code review and refactoring",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/siamet/multi-agent-code-review",
+    url="https://github.com/siamet/mavr",
     packages=find_packages(exclude=["tests", "tests.*", "docs", "scripts"]),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -47,7 +47,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "code-review=src.main:main",
+            "mavr=src.main:main",
         ],
     },
     include_package_data=True,
