@@ -75,7 +75,7 @@
 - Complete Python parser with tree-sitter integration
 - 4 core data models (SourceLocation, CodeEntity, Issue, Refactoring)
 - Comprehensive testing framework with pytest
-- Automated code quality checks (black, flake8, mypy)
+- Automated code quality checks (ruff, mypy)
 - GitHub Actions CI/CD pipeline
 
 
@@ -85,7 +85,7 @@
 1. ✅ **Solid Foundation** - Complete project structure with 35+ files ready for Phase 1
 2. ✅ **Type Safety** - Comprehensive type hints and Pydantic validation throughout
 3. ✅ **Test Coverage** - Robust pytest framework with 10+ test cases for core components
-4. ✅ **Code Quality** - Automated linting (black, flake8), type checking (mypy), CI/CD pipeline
+4. ✅ **Code Quality** - Automated linting and formatting (ruff), type checking (mypy), CI/CD pipeline
 5. ✅ **Extensibility** - Clean architecture with BaseParser interface for multi-language support
 6. ✅ **Documentation** - Google-style docstrings and clear usage examples
 

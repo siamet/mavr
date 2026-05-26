@@ -10,7 +10,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-database-336791.svg)](https://www.postgresql.org/)
 [![Neo4j](https://img.shields.io/badge/Neo4j-graph_db-008CC1.svg)](https://neo4j.com/)
 [![Redis](https://img.shields.io/badge/Redis-cache-DC382D.svg)](https://redis.io/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Linter: ruff](https://img.shields.io/badge/linter-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 
 > **A research-level multi-agent system that autonomously analyzes codebases, detects quality issues, and proposes semantically-preserving refactorings using Graph Neural Networks, Large Language Models, and Reinforcement Learning.**
 

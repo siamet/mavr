@@ -88,9 +88,9 @@ python -m src.models.llm.finetune --base-model codellama-7b
 python -m src.models.rl.train_ppo --timesteps 1000000
 
 # Linting and formatting
-black src/ tests/               # Auto-format code
-flake8 src/ tests/             # Lint checking
-mypy src/                      # Type checking
+ruff format src/ tests/         # Auto-format code
+ruff check src/ tests/          # Lint checking
+mypy src/                       # Type checking
 ```
 
 ---
@@ -289,8 +289,7 @@ Raises:
 - `pytest` - Testing framework
 - `pytest-cov` - Coverage reporting
 - `hypothesis` - Property-based testing
-- `black` - Code formatter
-- `flake8` - Linter
+- `ruff` - Linter and formatter
 - `mypy` - Type checker
 
 ---
@@ -406,9 +405,9 @@ python -m src.models.llm.finetune --base-model codellama-7b --dataset data/train
 python -m src.models.rl.train_ppo --env CodeRefactoringEnv --timesteps 1000000
 
 # Code quality
-black src/ tests/                  # Auto-format code
-flake8 src/ tests/                # Lint checking
-mypy src/                         # Type checking
+ruff format src/ tests/            # Auto-format code
+ruff check src/ tests/             # Lint checking
+mypy src/                          # Type checking
 ```
 
 ### Debugging Tools
@@ -436,7 +435,7 @@ mypy src/                         # Type checking
 - Project structure with 35+ files, Python 3.9+ with full type hints
 - tree-sitter parsers for Python, Java, JavaScript, TypeScript
 - Core data models (CodeEntity, Issue, Refactoring, SourceLocation) with Pydantic validation
-- pytest infrastructure, GitHub Actions CI/CD, black/flake8/mypy
+- pytest infrastructure, GitHub Actions CI/CD, ruff/mypy
 
 **Phase 1 — Core Analysis Pipeline (Complete):**
 - Knowledge graph (NetworkX-backed, 10 relationship types, cycle detection, incremental updates)

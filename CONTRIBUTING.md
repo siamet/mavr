@@ -82,8 +82,8 @@ pytest --cov=src --cov-report=html tests/
 pytest tests/test_agents/test_architecture_agent.py -v
 
 # Run linting
-black src/ tests/
-flake8 src/ tests/
+ruff format src/ tests/
+ruff check src/ tests/
 mypy src/
 ```
 
