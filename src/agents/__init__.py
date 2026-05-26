@@ -11,6 +11,7 @@ from src.agents.base_agent import (
     BaseAgent,
 )
 from src.agents.performance_agent import PerformanceAgent
+from src.agents.security_agent import SecurityAgent
 
 __all__ = [
     "AgentCapabilities",
@@ -18,4 +19,5 @@ __all__ = [
     "AgentResult",
     "BaseAgent",
     "PerformanceAgent",
+    "SecurityAgent",
 ]

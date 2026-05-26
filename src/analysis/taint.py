@@ -65,12 +65,14 @@ class TaintFlow:
         sink: The taint sink.
         path: List of block IDs from source to sink.
         sanitized: Whether a sanitizer was found along the path.
+        entity_id: ID of the containing function entity (populated by pipeline).
     """
 
     source: TaintSource
     sink: TaintSink
     path: List[str] = field(default_factory=list)
     sanitized: bool = False
+    entity_id: Optional[str] = None
 
 
 # Default sources, sinks, and sanitizers for common patterns
@@ -82,13 +84,17 @@ DEFAULT_SOURCES = [
 
 DEFAULT_SINKS = [
     TaintSink("sql_exec", r"execute|executemany|cursor\.execute", "sql_injection"),
-    TaintSink("os_command", r"os\.system|subprocess\.(run|call|Popen)", "command_injection"),
+    TaintSink(
+        "os_command", r"os\.system|subprocess\.(run|call|Popen)", "command_injection"
+    ),
     TaintSink("eval", r"eval|exec", "code_injection"),
     TaintSink("html_render", r"render|write.*html|innerHTML", "xss"),
 ]
 
 DEFAULT_SANITIZERS = [
-    TaintSanitizer("parameterize", r"parameterize|quote|escape_string", ["sql_injection"]),
+    TaintSanitizer(
+        "parameterize", r"parameterize|quote|escape_string", ["sql_injection"]
+    ),
     TaintSanitizer("html_escape", r"escape|html\.escape|bleach\.clean", ["xss"]),
     TaintSanitizer("shlex_quote", r"shlex\.quote|pipes\.quote", ["command_injection"]),
 ]

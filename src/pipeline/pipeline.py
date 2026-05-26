@@ -125,6 +125,8 @@ class AnalysisPipeline:
                     cfg = self._cfg_builder.build(ast_node)
                     result.cfgs[entity.id] = cfg
                     flows = self._taint_analyzer.analyze(cfg)
+                    for f in flows:
+                        f.entity_id = entity.id
                     result.taint_flows.extend(flows)
 
         result.processing_time_seconds = time.time() - start
