@@ -33,7 +33,6 @@ def _make_node(
 
 
 class TestScope:
-
     def test_define_and_lookup(self) -> None:
         s = Scope("test")
         sym = Symbol(name="x", symbol_type="variable", scope_id="test")
@@ -73,7 +72,6 @@ class TestScope:
 
 
 class TestSymbolTable:
-
     @pytest.fixture
     def table(self) -> SymbolTable:
         return SymbolTable()

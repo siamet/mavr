@@ -29,7 +29,7 @@ class FeatureVector:
 
     def __post_init__(self) -> None:
         if self.vector.shape != (VECTOR_DIM,):
-            raise ValueError(f"Vector must have shape ({VECTOR_DIM},), " f"got {self.vector.shape}")
+            raise ValueError(f"Vector must have shape ({VECTOR_DIM},), got {self.vector.shape}")
 
     def syntactic_features(self) -> np.ndarray:
         """Return the syntactic feature slice."""

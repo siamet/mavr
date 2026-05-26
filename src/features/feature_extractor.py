@@ -3,6 +3,7 @@
 from typing import Dict, Optional
 
 import numpy as np
+import numpy.typing as npt
 
 from src.features.feature_vector import (
     VECTOR_DIM,
@@ -92,22 +93,22 @@ class FeatureExtractor:
             vectors[eid] = self.extract(eid, em, sm)
         return vectors
 
-    def _build_syntactic(self, m: EntityMetrics) -> np.ndarray:
+    def _build_syntactic(self, m: EntityMetrics) -> npt.NDArray[np.float32]:
         """Build normalized syntactic feature array (32 dims)."""
-        arr = np.zeros(32, dtype=np.float32)
+        arr: npt.NDArray[np.float32] = np.zeros(32, dtype=np.float32)
         for i, field_name in enumerate(_SYNTACTIC_FIELDS):
             if i >= 32:
                 break
             raw = getattr(m, field_name, 0)
             arr[i] = self._normalizer.normalize(float(raw), field_name)
-        return arr  # type: ignore[no-any-return]
+        return arr
 
-    def _build_structural(self, m: StructuralMetrics) -> np.ndarray:
+    def _build_structural(self, m: StructuralMetrics) -> npt.NDArray[np.float32]:
         """Build normalized structural feature array (32 dims)."""
-        arr = np.zeros(32, dtype=np.float32)
+        arr: npt.NDArray[np.float32] = np.zeros(32, dtype=np.float32)
         for i, field_name in enumerate(_STRUCTURAL_FIELDS):
             if i >= 32:
                 break
             raw = getattr(m, field_name, 0)
             arr[i] = self._normalizer.normalize(float(raw), field_name)
-        return arr  # type: ignore[no-any-return]
+        return arr

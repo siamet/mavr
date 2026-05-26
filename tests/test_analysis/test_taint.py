@@ -27,7 +27,6 @@ def _make_stmt(source_text: str) -> ASTNode:
 
 
 class TestTaintAnalyzer:
-
     @pytest.fixture
     def analyzer(self) -> TaintAnalyzer:
         return TaintAnalyzer()

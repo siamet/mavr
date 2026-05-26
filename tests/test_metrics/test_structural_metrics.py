@@ -28,7 +28,6 @@ def _make_entity(
 
 
 class TestStructuralMetricsCalculator:
-
     @pytest.fixture
     def calc(self) -> StructuralMetricsCalculator:
         return StructuralMetricsCalculator()

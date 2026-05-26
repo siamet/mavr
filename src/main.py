@@ -66,7 +66,7 @@ def _print_results(result: PipelineResult, path: str) -> None:
         print(f"\n  Taint flows found:  {len(result.taint_flows)}")
         print(f"  Unsanitized:        {len(unsanitized)}")
         for flow in unsanitized[:5]:
-            print(f"    [{flow.sink.vulnerability}] " f"{flow.source.name} -> {flow.sink.name}")
+            print(f"    [{flow.sink.vulnerability}] {flow.source.name} -> {flow.sink.name}")
 
 
 def main() -> int:

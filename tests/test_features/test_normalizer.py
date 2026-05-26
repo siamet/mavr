@@ -6,7 +6,6 @@ from src.features.normalizer import FeatureNormalizer
 
 
 class TestFeatureNormalizer:
-
     @pytest.fixture
     def norm(self) -> FeatureNormalizer:
         return FeatureNormalizer()

@@ -34,7 +34,6 @@ def _make_node(
 
 
 class TestBasicBlock:
-
     def test_empty_block(self) -> None:
         b = BasicBlock(id="b1")
         assert b.is_empty
@@ -46,7 +45,6 @@ class TestBasicBlock:
 
 
 class TestControlFlowGraph:
-
     def test_create_cfg(self) -> None:
         cfg = ControlFlowGraph("my_func")
         assert cfg.function_name == "my_func"
@@ -81,7 +79,6 @@ class TestControlFlowGraph:
 
 
 class TestCFGBuilder:
-
     @pytest.fixture
     def builder(self) -> CFGBuilder:
         return CFGBuilder()

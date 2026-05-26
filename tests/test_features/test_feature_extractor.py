@@ -11,7 +11,6 @@ from src.metrics.metrics_calculator import MetricsResult
 
 
 class TestFeatureExtractor:
-
     @pytest.fixture
     def extractor(self) -> FeatureExtractor:
         return FeatureExtractor()
@@ -104,7 +103,6 @@ class TestFeatureExtractor:
 
 
 class TestFeatureVectorValidation:
-
     def test_wrong_shape_raises(self) -> None:
         with pytest.raises(ValueError):
             FeatureVector(

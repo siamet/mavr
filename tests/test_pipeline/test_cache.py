@@ -8,7 +8,6 @@ from src.pipeline.cache import InMemoryCache
 
 
 class TestInMemoryCache:
-
     @pytest.fixture
     def cache(self) -> InMemoryCache:
         return InMemoryCache()

@@ -23,20 +23,36 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 
-[tool.black]
+[tool.ruff]
 line-length = 100
-target-version = ['py39', 'py310', 'py311']
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.venv
-  | venv
-  | build
-  | dist
-  | __pycache__
-)/
-'''
+target-version = "py39"
+extend-exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "__pycache__",
+    "*.egg-info",
+]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, C90: mccabe complexity
+select = ["E", "F", "W", "C90"]
+# E203: whitespace before ':' (defers to formatter)
+# E501: line too long (handled by formatter)
+# E731: do not assign a lambda expression
+ignore = ["E203", "E501", "E731"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"tests/*" = ["F401", "F811"]
+
+[tool.ruff.format]
+# Black-compatible defaults
 
 [tool.isort]
 profile = "black"

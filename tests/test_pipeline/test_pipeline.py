@@ -8,7 +8,6 @@ from src.models.code_entity import EntityType
 
 
 class TestAnalysisPipeline:
-
     def test_analyze_single_python_file(self, sample_python_file) -> None:
         pipeline = AnalysisPipeline()
         result = pipeline.analyze_file(str(sample_python_file))
@@ -88,7 +87,6 @@ class TestAnalysisPipeline:
 
 
 class TestPipelineIncremental:
-
     def test_update_file(self, sample_python_file, tmp_path) -> None:
         # Create a temp copy to modify
         import shutil

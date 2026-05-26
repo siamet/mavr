@@ -33,7 +33,6 @@ def _make_node(
 
 
 class TestEntityMetricsCalculator:
-
     @pytest.fixture
     def calc(self) -> EntityMetricsCalculator:
         return EntityMetricsCalculator()

@@ -65,7 +65,6 @@ def _build_simple_cfg() -> ControlFlowGraph:
 
 
 class TestDataFlowAnalyzer:
-
     @pytest.fixture
     def analyzer(self) -> DataFlowAnalyzer:
         return DataFlowAnalyzer()

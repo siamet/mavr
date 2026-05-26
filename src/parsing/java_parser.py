@@ -30,8 +30,7 @@ class JavaParser(BaseParser):
 
         if not TREE_SITTER_AVAILABLE:
             raise ImportError(
-                "tree-sitter not available. "
-                "Install with: pip install tree-sitter tree-sitter-java"
+                "tree-sitter not available. Install with: pip install tree-sitter tree-sitter-java"
             )
 
         try:
