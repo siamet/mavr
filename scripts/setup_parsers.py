@@ -8,7 +8,7 @@ from pathlib import Path
 try:
     from tree_sitter import Language
 except ImportError:
-    print("tree-sitter not installed. Please run: pip install tree-sitter")
+    print("tree-sitter not installed. Please run: uv sync")
     sys.exit(1)
 
 
@@ -74,9 +74,9 @@ def download_and_build_grammars():
         print(f"Error building language library: {e}")
         print("\nTrying alternative method...")
 
-        # Try installing via pip packages
+        # Try installing via uv
         print("Installing pre-built language bindings...")
-        os.system("pip install tree-sitter-languages")
+        os.system("uv add tree-sitter-languages")
         print("Installed tree-sitter-languages package")
 
     print("\nLanguage grammar setup complete!")
@@ -88,6 +88,6 @@ if __name__ == "__main__":
         download_and_build_grammars()
     except Exception as e:
         print(f"\nSetup failed: {e}")
-        print("\nFalling back to pip package installation...")
-        os.system("pip install tree-sitter-languages")
+        print("\nFalling back to uv package installation...")
+        os.system("uv add tree-sitter-languages")
         print("Installed tree-sitter-languages as fallback")

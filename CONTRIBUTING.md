@@ -14,7 +14,8 @@ This is a research project developing a multi-agent AI system for automated code
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12 or higher
+- [uv](https://docs.astral.sh/uv/) (install: `curl -LsSf https://astral.sh/uv/install.sh | sh`)
 - Git
 - 16GB+ RAM recommended
 - GPU with 16GB VRAM (for model training, optional for general development)
@@ -26,19 +27,18 @@ This is a research project developing a multi-agent AI system for automated code
 git clone https://github.com/siamet/mavr.git
 cd mavr
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
+# Sync dependencies (creates .venv and installs project + dev group)
+uv sync
 
 # Install tree-sitter parsers
-python scripts/setup_parsers.py
+uv run python scripts/setup_parsers.py
 
 # Run tests to verify setup
-pytest tests/
+uv run pytest tests/
+
+# (Optional) Install ML stack for Phase 2+ GNN/LLM/RL work
+# DGL on Linux requires its own wheel index — see https://www.dgl.ai/pages/start.html
+uv sync --extra ml
 ```
 
 ## 📋 Development Workflow
@@ -73,18 +73,18 @@ Follow our coding standards (see below) and ensure:
 
 ```bash
 # Run all tests
-pytest tests/
+uv run pytest tests/
 
 # Run with coverage
-pytest --cov=src --cov-report=html tests/
+uv run pytest --cov=src --cov-report=html tests/
 
 # Run specific test file
-pytest tests/test_agents/test_architecture_agent.py -v
+uv run pytest tests/test_agents/test_architecture_agent.py -v
 
 # Run linting
-ruff format src/ tests/
-ruff check src/ tests/
-mypy src/
+uv run ruff format src/ tests/
+uv run ruff check src/ tests/
+uv run mypy src/
 ```
 
 ### 5. Commit Your Changes

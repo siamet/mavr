@@ -46,7 +46,7 @@ Avoid building functionality on speculation. Implement features only when they a
 **Last updated:** February 2026
 
 ### Primary Technologies
-- **Language**: Python 3.9+
+- **Language**: Python 3.12+
 - **ML Framework**: PyTorch 2.0+, DGL (Deep Graph Library)
 - **Backend API**: FastAPI (async high-performance)
 - **Parsing**: tree-sitter (multi-language AST parsing)
@@ -58,39 +58,42 @@ Avoid building functionality on speculation. Implement features only when they a
 - **Frontend**: React + D3.js (visualizations)
 
 ### Development Environment
-**Environment Management**: Python venv
-**Package Manager**: pip
+**Environment Management**: uv (managed `.venv`)
+**Package Manager**: uv
 **CI/CD**: GitHub Actions
 **Containerization**: Docker + docker-compose
 **Documentation**: Sphinx (API docs)
 
 ### Essential Commands
 ```bash
-# Environment setup
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python scripts/setup_parsers.py
+# Environment setup (installs project + dev group into .venv)
+uv sync
+uv run python scripts/setup_parsers.py
 
 # Testing
-pytest tests/                    # Run all tests
-pytest --cov=src tests/         # Run with coverage report
-pytest tests/integration/ -v    # Integration tests only
+uv run pytest tests/                       # Run all tests
+uv run pytest --cov=src tests/             # Run with coverage report
+uv run pytest tests/integration/ -v        # Integration tests only
 
 # Development
-python -m src.main analyze path/to/code     # Analyze code
-python -m src.main refactor --repo ./project --apply
-python -m src.api.server                    # Start web server (port 8000)
+uv run python -m src.main analyze path/to/code     # Analyze code
+uv run python -m src.main refactor --repo ./project --apply
+uv run python -m src.api.server                    # Start web server (port 8000)
 
 # Model training (research phase)
-python -m src.models.gnn.train --epochs 50
-python -m src.models.llm.finetune --base-model codellama-7b
-python -m src.models.rl.train_ppo --timesteps 1000000
+uv run python -m src.models.gnn.train --epochs 50
+uv run python -m src.models.llm.finetune --base-model codellama-7b
+uv run python -m src.models.rl.train_ppo --timesteps 1000000
 
 # Linting and formatting
-ruff format src/ tests/         # Auto-format code
-ruff check src/ tests/          # Lint checking
-mypy src/                       # Type checking
+uv run ruff format src/ tests/    # Auto-format code
+uv run ruff check src/ tests/     # Lint checking
+uv run mypy src/                  # Type checking
+
+# Dependency management
+uv add <package>                  # Add a runtime dependency
+uv add --group dev <package>      # Add a dev dependency
+uv lock --upgrade                 # Refresh uv.lock
 ```
 
 ---
@@ -381,33 +384,36 @@ Types: feat, fix, docs, style, refactor, test, chore
 
 ### Essential Development Commands
 ```bash
-# Environment setup
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python scripts/setup_parsers.py  # Install tree-sitter grammars
+# Environment setup (installs project + dev group into .venv)
+uv sync
+uv run python scripts/setup_parsers.py  # Install tree-sitter grammars
 
 # Development workflow
-python -m src.main analyze path/to/file.py            # Analyze single file
-python -m src.main analyze --repo https://github.com/user/repo.git
-python -m src.main refactor --repo ./my-project --apply
-python -m src.api.server                              # Start web server (port 8000)
+uv run python -m src.main analyze path/to/file.py            # Analyze single file
+uv run python -m src.main analyze --repo https://github.com/user/repo.git
+uv run python -m src.main refactor --repo ./my-project --apply
+uv run python -m src.api.server                              # Start web server (port 8000)
 
 # Testing
-pytest tests/                      # Run all tests
-pytest --cov=src --cov-report=html tests/  # Coverage report
-pytest tests/test_agents/test_architecture_agent.py    # Specific test
-pytest tests/integration/ -v       # Integration tests only
+uv run pytest tests/                                  # Run all tests
+uv run pytest --cov=src --cov-report=html tests/      # Coverage report
+uv run pytest tests/test_agents/test_architecture_agent.py    # Specific test
+uv run pytest tests/integration/ -v                   # Integration tests only
 
 # Model training (research phase)
-python -m src.models.gnn.train --data data/training/code_smells.json --epochs 50 --batch-size 32
-python -m src.models.llm.finetune --base-model codellama-7b --dataset data/training/explanations.jsonl --epochs 3
-python -m src.models.rl.train_ppo --env CodeRefactoringEnv --timesteps 1000000
+uv run python -m src.models.gnn.train --data data/training/code_smells.json --epochs 50 --batch-size 32
+uv run python -m src.models.llm.finetune --base-model codellama-7b --dataset data/training/explanations.jsonl --epochs 3
+uv run python -m src.models.rl.train_ppo --env CodeRefactoringEnv --timesteps 1000000
 
 # Code quality
-ruff format src/ tests/            # Auto-format code
-ruff check src/ tests/             # Lint checking
-mypy src/                          # Type checking
+uv run ruff format src/ tests/    # Auto-format code
+uv run ruff check src/ tests/     # Lint checking
+uv run mypy src/                  # Type checking
+
+# Dependency management
+uv add <package>                  # Add a runtime dependency
+uv add --group dev <package>      # Add a dev dependency
+uv lock --upgrade                 # Refresh uv.lock
 ```
 
 ### Debugging Tools
@@ -432,7 +438,7 @@ mypy src/                          # Type checking
 ### Completed Phases
 
 **Phase 0 — Foundation & Infrastructure (Complete):**
-- Project structure with 35+ files, Python 3.9+ with full type hints
+- Project structure with 35+ files, Python 3.12+ with full type hints
 - tree-sitter parsers for Python, Java, JavaScript, TypeScript
 - Core data models (CodeEntity, Issue, Refactoring, SourceLocation) with Pydantic validation
 - pytest infrastructure, GitHub Actions CI/CD, ruff/mypy

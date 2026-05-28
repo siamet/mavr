@@ -1,7 +1,7 @@
 # 🤖 Mavr
 
 <!-- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) -->
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![DGL](https://img.shields.io/badge/DGL-Graph_Neural_Networks-orange.svg)](https://www.dgl.ai/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
@@ -164,7 +164,8 @@ A coordinated multi-agent system where:
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12 or higher
+- [uv](https://docs.astral.sh/uv/) (install: `curl -LsSf https://astral.sh/uv/install.sh | sh`)
 - CUDA 11.8+ (optional, for GPU acceleration)
 - 16GB RAM minimum (32GB recommended)
 - Git
@@ -176,18 +177,18 @@ A coordinated multi-agent system where:
 git clone https://github.com/siamet/mavr.git
 cd mavr
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+# Sync dependencies (creates .venv and installs project + dev group)
+uv sync
 
 # Install tree-sitter language grammars
-python scripts/setup_parsers.py
+uv run python scripts/setup_parsers.py
 
 # Download pre-trained models (optional)
-python scripts/download_models.py
+uv run python scripts/download_models.py
+
+# (Optional) Install ML stack for Phase 2+ GNN/LLM/RL work
+# DGL on Linux requires its own wheel index — see https://www.dgl.ai/pages/start.html
+uv sync --extra ml
 ```
 
 ### Docker Installation
@@ -210,11 +211,11 @@ docker-compose up
 git clone https://github.com/siamet/mavr.git
 cd mavr
 
-# Install in development mode
-pip install -e .
+# Install in development mode (uv installs the project as editable by default)
+uv sync
 
 # Run tests to verify installation
-pytest tests/
+uv run pytest tests/
 ```
 
 ---
@@ -225,16 +226,16 @@ pytest tests/
 
 ```bash
 # Analyze a single file
-python -m src.main analyze path/to/file.py
+uv run python -m src.main analyze path/to/file.py
 
 # Analyze entire repository
-python -m src.main analyze --repo https://github.com/user/repo.git
+uv run python -m src.main analyze --repo https://github.com/user/repo.git
 
 # Apply automatic refactorings
-python -m src.main refactor --repo ./my-project --apply
+uv run python -m src.main refactor --repo ./my-project --apply
 
 # Generate report
-python -m src.main report --input results.json --output report.html
+uv run python -m src.main report --input results.json --output report.html
 ```
 
 ### Python API
@@ -279,7 +280,7 @@ print(f"Quality Improvement: {quality_metrics.improvement_percentage}%")
 
 ```bash
 # Start the web server
-python -m src.api.server
+uv run python -m src.api.server
 
 # Open browser to http://localhost:8000
 # Upload repository or connect to GitHub
@@ -436,35 +437,38 @@ mavr/
 
 ```bash
 # Run all tests
-pytest tests/
+uv run pytest tests/
 
 # Run with coverage
-pytest --cov=src --cov-report=html tests/
+uv run pytest --cov=src --cov-report=html tests/
 
 # Run specific test suite
-pytest tests/test_agents/test_architecture_agent.py
+uv run pytest tests/test_agents/test_architecture_agent.py
 
 # Run integration tests
-pytest tests/integration/ -v
+uv run pytest tests/integration/ -v
 ```
 
 ### Training Models
 
+> Requires the `ml` extra: `uv sync --extra ml` (DGL on Linux needs its own
+> wheel index — see https://www.dgl.ai/pages/start.html).
+
 ```bash
 # Train GNN for code smell detection
-python -m src.models.gnn.train \
+uv run python -m src.models.gnn.train \
     --data data/training/code_smells.json \
     --epochs 50 \
     --batch-size 32
 
 # Fine-tune LLM
-python -m src.models.llm.finetune \
+uv run python -m src.models.llm.finetune \
     --base-model codellama-7b \
     --dataset data/training/explanations.jsonl \
     --epochs 3
 
 # Train RL orchestrator
-python -m src.models.rl.train_ppo \
+uv run python -m src.models.rl.train_ppo \
     --env CodeRefactoringEnv \
     --timesteps 1000000
 ```

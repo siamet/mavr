@@ -1,45 +1,27 @@
 #!/bin/bash
-# Development environment setup script for Mavr
+# Development environment setup script for Mavr (uv-based)
 
 set -e  # Exit on error
 
 echo "Setting up Mavr..."
 
-# Check Python version
-PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
-REQUIRED_VERSION="3.9"
-
-if [ "$(printf '%s\n' "$REQUIRED_VERSION" "$PYTHON_VERSION" | sort -V | head -n1)" != "$REQUIRED_VERSION" ]; then
-    echo "Error: Python 3.9 or higher is required. Found: $PYTHON_VERSION"
+# Check uv is installed
+if ! command -v uv >/dev/null 2>&1; then
+    echo "Error: uv is not installed."
+    echo "Install it: https://docs.astral.sh/uv/getting-started/installation/"
+    echo "Quick install: curl -LsSf https://astral.sh/uv/install.sh | sh"
     exit 1
 fi
 
-echo "Python version: $PYTHON_VERSION"
+echo "uv version: $(uv --version)"
 
-# Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-else
-    echo "Virtual environment already exists"
-fi
-
-# Activate virtual environment
-echo "Activating virtual environment..."
-source venv/bin/activate
-
-# Upgrade pip
-echo "⬆Upgrading pip..."
-pip install --upgrade pip setuptools wheel
-
-# Install dependencies
-echo "Installing dependencies..."
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
+# Sync dependencies (creates .venv and installs project + dev group)
+echo "Syncing dependencies via uv..."
+uv sync
 
 # Install tree-sitter language grammars
 echo "Installing tree-sitter language grammars..."
-python scripts/setup_parsers.py
+uv run python scripts/setup_parsers.py
 
 # Create necessary directories
 echo "Creating necessary directories..."
@@ -83,17 +65,15 @@ fi
 
 # Run tests to verify installation
 echo "Running tests to verify installation..."
-pytest tests/ -v || echo " Some tests failed (this is expected for initial setup)"
+uv run pytest tests/ -v || echo "Some tests failed (this is expected for initial setup)"
 
 echo ""
 echo "Setup complete!"
 echo ""
-echo "To activate the environment, run:"
-echo "  source venv/bin/activate"
+echo "Run commands via uv (no manual activation needed):"
+echo "  uv run pytest tests/"
+echo "  uv run python -m src.main --help"
 echo ""
-echo "To run tests:"
-echo "  pytest tests/"
-echo ""
-echo "To start development:"
-echo "  python -m src.main --help"
+echo "To activate the environment manually:"
+echo "  source .venv/bin/activate"
 echo ""

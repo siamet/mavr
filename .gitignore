@@ -28,7 +28,7 @@ MANIFEST
 venv/
 ENV/
 env/
-.venv
+.venv/
 
 # PyCharm
 .idea/
@@ -39,8 +39,8 @@ env/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pyenv
-.python-version
+# pyenv (uv reads .python-version too — keep tracked)
+# .python-version
 
 # pytest
 .pytest_cache/
