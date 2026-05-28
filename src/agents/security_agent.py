@@ -105,15 +105,9 @@ class SecurityAgent(BaseAgent):
         if target_entities is None:
             return None
         entities = context.pipeline_result.graph.entities
-        return {
-            entities[eid].location.file_path
-            for eid in target_entities
-            if eid in entities
-        }
+        return {entities[eid].location.file_path for eid in target_entities if eid in entities}
 
-    def _taint_flow_issue(
-        self, flow: TaintFlow, context: AgentContext
-    ) -> Optional[Issue]:
+    def _taint_flow_issue(self, flow: TaintFlow, context: AgentContext) -> Optional[Issue]:
         if flow.sanitized:
             return None
 
@@ -162,9 +156,7 @@ class SecurityAgent(BaseAgent):
             return None
         return context.pipeline_result.graph.entities.get(entity_id)
 
-    def _location_from_entity(
-        self, entity: Optional[CodeEntity]
-    ) -> Optional[SourceLocation]:
+    def _location_from_entity(self, entity: Optional[CodeEntity]) -> Optional[SourceLocation]:
         if entity is None:
             return None
         loc = entity.location

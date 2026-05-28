@@ -75,9 +75,7 @@ class PerformanceAgent(BaseAgent):
             return None
         entities = context.pipeline_result.graph.entities
         return {
-            entities[eid].location.file_path
-            for eid in context.target_entity_ids
-            if eid in entities
+            entities[eid].location.file_path for eid in context.target_entity_ids if eid in entities
         }
 
     def _scan_node(self, node: ASTNode, file_path: str, loop_depth: int) -> List[Issue]:
@@ -104,9 +102,7 @@ class PerformanceAgent(BaseAgent):
         if loop_depth > 0:
             if node.node_type == NodeType.CALL and _is_db_call(node.name):
                 issues.append(self._n_plus_one_issue(node, file_path))
-            elif node.node_type == NodeType.BINARY_OP and _is_string_concat_accumulator(
-                node
-            ):
+            elif node.node_type == NodeType.BINARY_OP and _is_string_concat_accumulator(node):
                 issues.append(self._string_concat_issue(node, file_path))
 
         for child in node.children:

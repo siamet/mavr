@@ -4,6 +4,7 @@ This package contains the base agent contract and the four specialized
 agents (Architecture, Performance, Security, Maintainability).
 """
 
+from src.agents.architecture_agent import ArchitectureAgent
 from src.agents.base_agent import (
     AgentCapabilities,
     AgentContext,
@@ -17,6 +18,7 @@ __all__ = [
     "AgentCapabilities",
     "AgentContext",
     "AgentResult",
+    "ArchitectureAgent",
     "BaseAgent",
     "PerformanceAgent",
     "SecurityAgent",
