@@ -66,9 +66,7 @@ def test_triple_nested_loops_are_high_severity() -> None:
     result = agent.analyze(_context_from("a.py", root))
 
     nested = [i for i in result.issues if i.type == IssueType.INEFFICIENT_ALGORITHM]
-    assert any(
-        i.severity == Severity.HIGH and i.metrics["loop_depth"] == 3.0 for i in nested
-    )
+    assert any(i.severity == Severity.HIGH and i.metrics["loop_depth"] == 3.0 for i in nested)
 
 
 def test_single_loop_is_not_flagged() -> None:
@@ -81,9 +79,7 @@ def test_single_loop_is_not_flagged() -> None:
 
 
 def test_nested_function_does_not_count_as_nested_loop() -> None:
-    inner_fn_body = _node(
-        NodeType.BLOCK, children=[_loop(_node(NodeType.IDENTIFIER, name="z"))]
-    )
+    inner_fn_body = _node(NodeType.BLOCK, children=[_loop(_node(NodeType.IDENTIFIER, name="z"))])
     inner_fn = _node(NodeType.FUNCTION, name="inner", children=[inner_fn_body])
     outer = _loop(inner_fn, line=1)
     root = _module_with(outer)
@@ -138,9 +134,7 @@ def test_string_concat_in_loop_flagged() -> None:
     agent = PerformanceAgent()
     result = agent.analyze(_context_from("a.py", root))
 
-    concat_issues = [
-        i for i in result.issues if i.type == IssueType.UNNECESSARY_COMPUTATION
-    ]
+    concat_issues = [i for i in result.issues if i.type == IssueType.UNNECESSARY_COMPUTATION]
     assert len(concat_issues) == 1
     assert concat_issues[0].severity == Severity.LOW
 

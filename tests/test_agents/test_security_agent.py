@@ -41,9 +41,7 @@ def _module(*statements: ASTNode) -> ASTNode:
     return _node(NodeType.MODULE, name="m", children=list(statements))
 
 
-def _flow(
-    vulnerability: str, sanitized: bool = False, entity_id: str = "e1"
-) -> TaintFlow:
+def _flow(vulnerability: str, sanitized: bool = False, entity_id: str = "e1") -> TaintFlow:
     return TaintFlow(
         source=TaintSource(name="user_input", pattern=".", category="user_input"),
         sink=TaintSink(name="sql_exec", pattern=".", vulnerability=vulnerability),
@@ -102,9 +100,7 @@ def test_xss_command_and_code_injection_flows_each_map_to_their_type() -> None:
 
 def test_sanitized_flow_does_not_emit_issue() -> None:
     entity = _entity("e1", "app.py")
-    ctx = _context(
-        flows=[_flow("sql_injection", sanitized=True)], entities={"e1": entity}
-    )
+    ctx = _context(flows=[_flow("sql_injection", sanitized=True)], entities={"e1": entity})
 
     result = SecurityAgent().analyze(ctx)
 
